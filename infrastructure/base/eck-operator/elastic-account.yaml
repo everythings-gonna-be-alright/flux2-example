@@ -1,0 +1,16 @@
+apiVersion: external-secrets.io/v1beta1 
+kind: ExternalSecret
+metadata:
+  name: elastic-account
+  namespace: elasticsearch
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: aws-secret-store
+  target:
+    name: elastic-account
+    template:
+      type: kubernetes.io/basic-auth
+  dataFrom:
+    - extract:
+        key: eck-operator/elastic-account

@@ -1,0 +1,22 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: log-storage
+  namespace: elasticsearch
+spec:
+  auth:
+    fileRealm:
+      - secretName: elastic-account
+  nodeSets:
+    - config:
+        node.roles:
+          - master
+          - data
+          - ingest
+          - ml
+          - transform
+        node.store.allow_mmap: false
+        xpack.ml.enabled: true
+      count: 3
+      name: system
+  version: 8.14.1
