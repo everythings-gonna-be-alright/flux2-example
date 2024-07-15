@@ -19,4 +19,4 @@ spec:
         xpack.ml.enabled: true
       count: 3
       name: system
-  version: 8.14.1
+  version: ${version:=8.14.1}

@@ -16,22 +16,6 @@ spec:
     namespace: flux-system
   path: "./infrastructure/base/eck-operator/crds"
   timeout: 5m
-  patches:
-    - patch: |-              
-        - op: replace
-          path: /spec/version
-          value: 8.12.0
-      target:
-          group: elasticsearch.k8s.elastic.co
-          version: v1
-          kind: Elasticsearch
-          name: log-storage
-    - patch: |-              
-        - op: replace
-          path: /spec/version
-          value: 8.12.0
-      target:
-        group: kibana.k8s.elastic.co
-        version: v1
-        kind: Kibana
-        name: log-storage
+  postBuild:
+    substitute:
+      version: 8.12.0
