@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
   - elasticsearch.yaml
   - kibana.yaml
+  - namespace.yaml
+  - elastic-account.yaml
