@@ -3,7 +3,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: eck-operator-crds
-  namespace: elasticsearch
+  namespace: flux-system
 spec:
   dependsOn:
     - name: eck-operator-release
@@ -16,3 +16,6 @@ spec:
     namespace: flux-system
   path: "./infrastructure/base/eck-operator/crds"
   timeout: 5m
+  postBuild:
+    substitute:
+      version: 8.14.0
